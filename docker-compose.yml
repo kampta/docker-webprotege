@@ -1,0 +1,19 @@
+protege_server:
+  build: ./
+  container_name: protege_server
+  volumes:
+    - /data/webprotege:/data/webprotege
+  links:
+    - mongo
+  ports:
+    - "8080:8080"
+
+mongo:
+  restart: always
+  container_name: mongo
+  image: mongo:latest
+  volumes:
+    - /data/mongodb:/data
+    - /data/mongodb/db:/data/db
+  ports:
+    - "27017:27017"
